@@ -1,12 +1,12 @@
 # Rust
-/target
+/rust/target
 Cargo.lock
 **/*.rs.bk
 *.pdb
 
 # .NET / C#
-bin/
-obj/
+/csharp/**/bin/
+/csharp/**/obj/
 *.user
 *.suo
 *.userprefs

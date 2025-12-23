@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "F+rM9aWDDK0=",
+  "success": true,
+  "projectFilePath": "/Users/plunix/dev/demo-ffi-bun-rust/CSharpFfiLib.csproj",
+  "expectedPackageFiles": [
+    "/Users/plunix/.nuget/packages/microsoft.dotnet.ilcompiler/8.0.11/microsoft.dotnet.ilcompiler.8.0.11.nupkg.sha512",
+    "/Users/plunix/.nuget/packages/microsoft.net.illink.tasks/8.0.11/microsoft.net.illink.tasks.8.0.11.nupkg.sha512",
+    "/Users/plunix/.nuget/packages/runtime.osx-arm64.microsoft.dotnet.ilcompiler/8.0.11/runtime.osx-arm64.microsoft.dotnet.ilcompiler.8.0.11.nupkg.sha512",
+    "/Users/plunix/.nuget/packages/microsoft.netcore.app.runtime.osx-arm64/8.0.11/microsoft.netcore.app.runtime.osx-arm64.8.0.11.nupkg.sha512",
+    "/Users/plunix/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-arm64/8.0.11/microsoft.aspnetcore.app.runtime.osx-arm64.8.0.11.nupkg.sha512",
+    "/Users/plunix/.nuget/packages/runtime.osx-arm64.microsoft.dotnet.ilcompiler/8.0.11/runtime.osx-arm64.microsoft.dotnet.ilcompiler.8.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

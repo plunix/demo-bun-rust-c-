@@ -1,13 +1,13 @@
 import { dlopen, FFIType, suffix, CString, ptr, toArrayBuffer } from "bun:ffi";
 import path from "path";
 
-// Percorso della libreria compilata
+// Path to the compiled library
 const libPath = path.join(
   import.meta.dir,
-  `target/release/librust_ffi_lib.${suffix}`
+  `../rust/target/release/librust_ffi_lib.${suffix}`
 );
 
-// Apri la libreria dinamica e definisci le funzioni
+// Open the dynamic library and define functions
 const lib = dlopen(libPath, {
   add: {
     args: [FFIType.i32, FFIType.i32],
@@ -33,23 +33,23 @@ const lib = dlopen(libPath, {
 
 console.log("🚀 Demo Bun FFI + Rust\n");
 
-// Test funzione add
-console.log("📊 Test addizione:");
+// Test add function
+console.log("📊 Addition test:");
 const sum = lib.symbols.add(15, 27);
 console.log(`   15 + 27 = ${sum}\n`);
 
-// Test funzione multiply
-console.log("📊 Test moltiplicazione:");
+// Test multiply function
+console.log("📊 Multiplication test:");
 const product = lib.symbols.multiply(8, 7);
 console.log(`   8 × 7 = ${product}\n`);
 
-// Test funzione factorial
-console.log("📊 Test fattoriale:");
+// Test factorial function
+console.log("📊 Factorial test:");
 const fact = lib.symbols.factorial(10);
 console.log(`   10! = ${fact}\n`);
 
-// Test funzione greet con gestione memoria
-console.log("📊 Test saluto:");
+// Test greet function with memory management
+console.log("📊 Greeting test:");
 const nameStr = "Mario";
 const encoder = new TextEncoder();
 const nameBytes = encoder.encode(nameStr + "\0");
@@ -60,10 +60,10 @@ if (greetingPtr && greetingPtr !== 0) {
   const greeting = new CString(greetingPtr);
   console.log(`   ${greeting.toString()}\n`);
   
-  // Libera la memoria allocata da Rust
+  // Free memory allocated by Rust
   lib.symbols.free_string(greetingPtr);
 } else {
-  console.log("   ⚠️ Errore: puntatore nullo dalla funzione greet\n");
+  console.log("   ⚠️ Error: null pointer from greet function\n");
 }
 
-console.log("✅ Tutti i test completati!");
+console.log("✅ All tests completed!");

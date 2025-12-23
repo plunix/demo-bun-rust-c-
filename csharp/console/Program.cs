@@ -6,13 +6,13 @@ namespace RustFfiDemo
 {
     class Program
     {
-        // Percorso della libreria Rust compilata
-        // Su macOS: librust_ffi_lib.dylib
-        // Su Linux: librust_ffi_lib.so
-        // Su Windows: rust_ffi_lib.dll
-        private const string LibraryPath = "target/release/librust_ffi_lib.dylib";
+        // Path to the compiled Rust library
+        // On macOS: librust_ffi_lib.dylib
+        // On Linux: librust_ffi_lib.so
+        // On Windows: rust_ffi_lib.dll
+        private const string LibraryPath = "../../rust/target/release/librust_ffi_lib.dylib";
 
-        // Import delle funzioni Rust tramite P/Invoke
+        // Import Rust functions via P/Invoke
         [DllImport(LibraryPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern int add(int a, int b);
 
@@ -28,13 +28,13 @@ namespace RustFfiDemo
         [DllImport(LibraryPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern void free_string(IntPtr s);
 
-        // Helper per convertire stringa C# in byte array per FFI
+        // Helper to convert C# string to byte array for FFI
         private static byte[] ToCString(string str)
         {
             return Encoding.UTF8.GetBytes(str + "\0");
         }
 
-        // Helper per chiamare greet e gestire la memoria
+        // Helper to call greet and manage memory
         private static string CallGreet(string name)
         {
             IntPtr ptr = greet(ToCString(name));
@@ -55,27 +55,27 @@ namespace RustFfiDemo
         {
             Console.WriteLine("🚀 Demo C# FFI + Rust\n");
 
-            // Test funzione add
-            Console.WriteLine("📊 Test addizione:");
+            // Test add function
+            Console.WriteLine("📊 Addition test:");
             int sum = add(15, 27);
             Console.WriteLine($"   15 + 27 = {sum}\n");
 
-            // Test funzione multiply
-            Console.WriteLine("📊 Test moltiplicazione:");
+            // Test multiply function
+            Console.WriteLine("📊 Multiplication test:");
             int product = multiply(8, 7);
             Console.WriteLine($"   8 × 7 = {product}\n");
 
-            // Test funzione factorial
-            Console.WriteLine("📊 Test fattoriale:");
+            // Test factorial function
+            Console.WriteLine("📊 Factorial test:");
             ulong fact = factorial(10);
             Console.WriteLine($"   10! = {fact}\n");
 
-            // Test funzione greet
-            Console.WriteLine("📊 Test saluto:");
+            // Test greet function
+            Console.WriteLine("📊 Greeting test:");
             string greeting = CallGreet("Mario");
             Console.WriteLine($"   {greeting}\n");
 
-            Console.WriteLine("✅ Tutti i test completati!");
+            Console.WriteLine("✅ All tests completed!");
         }
     }
 }

@@ -7,7 +7,7 @@ namespace CSharpFfiLib
     public class Exports
     {
         /// <summary>
-        /// Sottrae due numeri
+        /// Subtracts two numbers
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "subtract")]
         public static int Subtract(int a, int b)
@@ -16,7 +16,7 @@ namespace CSharpFfiLib
         }
 
         /// <summary>
-        /// Divide due numeri
+        /// Divides two numbers
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "divide")]
         public static double Divide(double a, double b)
@@ -27,7 +27,7 @@ namespace CSharpFfiLib
         }
 
         /// <summary>
-        /// Calcola la potenza
+        /// Calculates power
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "power")]
         public static double Power(double baseNum, double exponent)
@@ -36,7 +36,7 @@ namespace CSharpFfiLib
         }
 
         /// <summary>
-        /// Verifica se un numero è primo
+        /// Checks if a number is prime
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "is_prime")]
         public static int IsPrime(int n)
@@ -54,13 +54,13 @@ namespace CSharpFfiLib
         }
 
         /// <summary>
-        /// Restituisce un messaggio dall'ambiente C#
-        /// NOTA: Il chiamante deve liberare la memoria
+        /// Returns a message from the C# environment
+        /// NOTE: The caller must free the memory
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "get_message")]
         public static unsafe IntPtr GetMessage()
         {
-            string message = "Ciao da C#! Questa funzione è scritta in C# e chiamata da Bun! 🎉";
+            string message = "Hello from C#! This function is written in C# and called by Bun! 🎉";
             byte[] bytes = Encoding.UTF8.GetBytes(message + "\0");
             
             IntPtr ptr = Marshal.AllocHGlobal(bytes.Length);
@@ -70,7 +70,7 @@ namespace CSharpFfiLib
         }
 
         /// <summary>
-        /// Libera la memoria allocata
+        /// Frees allocated memory
         /// </summary>
         [UnmanagedCallersOnly(EntryPoint = "free_memory")]
         public static void FreeMemory(IntPtr ptr)

@@ -1,0 +1,11 @@
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Release/net8.0/osx-arm64/CSharpFfiLib.deps.json
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Release/net8.0/osx-arm64/CSharpFfiLib.dll
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Release/net8.0/osx-arm64/CSharpFfiLib.pdb
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.AssemblyInfoInputs.cache
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.AssemblyInfo.cs
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.csproj.CoreCompileInputs.cache
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.dll
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/refint/CSharpFfiLib.dll
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/CSharpFfiLib.pdb
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Release/net8.0/osx-arm64/ref/CSharpFfiLib.dll

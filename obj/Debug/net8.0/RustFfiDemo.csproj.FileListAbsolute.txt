@@ -1,0 +1,15 @@
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/target/release/librust_ffi_lib.dylib
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/RustFfiDemo
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/RustFfiDemo.deps.json
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/RustFfiDemo.runtimeconfig.json
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/RustFfiDemo.dll
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Debug/net8.0/RustFfiDemo.pdb
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.GeneratedMSBuildEditorConfig.editorconfig
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.AssemblyInfoInputs.cache
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.AssemblyInfo.cs
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.csproj.CoreCompileInputs.cache
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.dll
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/refint/RustFfiDemo.dll
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.pdb
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/RustFfiDemo.genruntimeconfig.cache
+/Users/plunix/dev/demo-ffi-bun-rust/obj/Debug/net8.0/ref/RustFfiDemo.dll

@@ -68,43 +68,52 @@ bun run demo:all         # Run all 4 demos in sequence
 
 ```
 .
-├── Cargo.toml              # Rust project configuration
-├── src/
-│   └── lib.rs              # Rust source code (FFI library)
-├── index.ts                # Bun → Rust
-├── index_csharp.ts         # Bun → C#
-├── index_combined.ts       # Bun → Rust + C# (combined)
-├── Program.cs              # C# → Rust (console app)
-├── CSharpLib.cs            # C# native library
-├── RustFfiDemo.csproj      # .NET project (console)
-├── CSharpFfiLib.csproj     # .NET project (library)
-├── build_csharp.sh         # C# NativeAOT build script
-├── package.json            # Bun configuration
-├── README.md               # This file
-└── README_CSHARP.md        # C# + Rust guide
+├── rust/                          # Rust source code
+│   ├── Cargo.toml                 # Rust project configuration
+│   ├── src/
+│   │   └── lib.rs                 # FFI library implementation
+│   └── target/release/            # Compiled Rust library
+├── csharp/                        # C# source code
+│   ├── console/                   # Console application (C# → Rust)
+│   │   ├── Program.cs
+│   │   └── RustFfiDemo.csproj
+│   └── library/                   # Native library (Bun → C#)
+│       ├── CSharpLib.cs
+│       ├── CSharpFfiLib.csproj
+│       └── bin/Release/.../       # Compiled C# library
+├── typescript/                    # TypeScript/Bun source code
+│   ├── index.ts                   # Bun → Rust demo
+│   ├── index_csharp.ts            # Bun → C# demo
+│   └── index_combined.ts          # Combined demo (Rust + C#)
+├── scripts/                       # Build scripts
+│   └── build_csharp.sh            # C# NativeAOT build script
+├── package.json                   # Bun/npm configuration
+├── .gitignore
+├── README.md                      # This file
+└── README_CSHARP.md               # C# + Rust guide
 ```
 
 ## 🔧 How It Works
 
 This project demonstrates **four different FFI combinations**:
 
-### 1. Bun → Rust ([index.ts](index.ts))
+### 1. Bun → Rust ([typescript/index.ts](typescript/index.ts))
 - Rust compiles a dynamic library (`cdylib`) with `extern "C"`
 - Bun uses `bun:ffi` to load and call Rust functions
 - Functions: `add`, `multiply`, `factorial`, `greet`
 
-### 2. C# → Rust ([Program.cs](Program.cs))
+### 2. C# → Rust ([csharp/console/Program.cs](csharp/console/Program.cs))
 - Rust compiles the same dynamic library
 - C# uses P/Invoke (`[DllImport]`) to call the functions
 - Same FFI interface, different calling language
 
-### 3. Bun → C# ([index_csharp.ts](index_csharp.ts), [CSharpLib.cs](CSharpLib.cs))
+### 3. Bun → C# ([typescript/index_csharp.ts](typescript/index_csharp.ts), [csharp/library/CSharpLib.cs](csharp/library/CSharpLib.cs))
 - C# compiles a native library with NativeAOT
 - Functions exported with `[UnmanagedCallersOnly]`
 - Bun calls C# functions via FFI
 - Functions: `subtract`, `divide`, `power`, `is_prime`, `get_message`
 
-### 4. Bun → Rust + C# Combined ([index_combined.ts](index_combined.ts)) 🎭
+### 4. Bun → Rust + C# Combined ([typescript/index_combined.ts](typescript/index_combined.ts)) 🎭
 - **The most complete demo**: loads both libraries simultaneously
 - Alternates calls between Rust and C# for different calculations
 - Demonstrates combined operations using both languages

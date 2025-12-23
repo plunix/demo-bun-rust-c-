@@ -5,14 +5,14 @@ console.log("🎭 Demo Bun FFI - Rust + C# Combined\n");
 console.log("=" .repeat(60));
 
 // ========================================
-// 1. Carica libreria Rust
+// 1. Load Rust library
 // ========================================
 const rustLibPath = path.join(
   import.meta.dir,
-  `target/release/librust_ffi_lib.${suffix}`
+  `../rust/target/release/librust_ffi_lib.${suffix}`
 );
 
-console.log("\n📦 Caricamento libreria Rust:", rustLibPath);
+console.log("\n📦 Loading Rust library:", rustLibPath);
 
 const rustLib = dlopen(rustLibPath, {
   add: {
@@ -38,14 +38,14 @@ const rustLib = dlopen(rustLibPath, {
 });
 
 // ========================================
-// 2. Carica libreria C#
+// 2. Load C# library
 // ========================================
 const csharpLibPath = path.join(
   import.meta.dir,
-  `bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.dylib`
+  `../csharp/library/bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.dylib`
 );
 
-console.log("📦 Caricamento libreria C#:", csharpLibPath);
+console.log("📦 Loading C# library:", csharpLibPath);
 
 const csharpLib = dlopen(csharpLibPath, {
   subtract: {
@@ -74,58 +74,58 @@ const csharpLib = dlopen(csharpLibPath, {
   },
 });
 
-console.log("\n✅ Entrambe le librerie caricate con successo!\n");
+console.log("\n✅ Both libraries loaded successfully!\n");
 console.log("=" .repeat(60));
 
 // ========================================
-// 3. Test Operazioni Matematiche
+// 3. Test Math Operations
 // ========================================
-console.log("\n🔢 OPERAZIONI MATEMATICHE\n");
+console.log("\n🔢 MATH OPERATIONS\n");
 
-console.log("🦀 Rust - Addizione:");
+console.log("🦀 Rust - Addition:");
 const sum = rustLib.symbols.add(42, 18);
 console.log(`   42 + 18 = ${sum}`);
 
-console.log("\n🟣 C# - Sottrazione:");
+console.log("\n🟣 C# - Subtraction:");
 const diff = csharpLib.symbols.subtract(100, 35);
 console.log(`   100 - 35 = ${diff}`);
 
-console.log("\n🦀 Rust - Moltiplicazione:");
+console.log("\n🦀 Rust - Multiplication:");
 const product = rustLib.symbols.multiply(7, 9);
 console.log(`   7 × 9 = ${product}`);
 
-console.log("\n🟣 C# - Divisione:");
+console.log("\n🟣 C# - Division:");
 const quotient = csharpLib.symbols.divide(144.0, 12.0);
 console.log(`   144 ÷ 12 = ${quotient}`);
 
-console.log("\n🟣 C# - Potenza:");
+console.log("\n🟣 C# - Power:");
 const pow = csharpLib.symbols.power(3.0, 4.0);
 console.log(`   3^4 = ${pow}`);
 
 // ========================================
-// 4. Test Funzioni Avanzate
+// 4. Test Advanced Functions
 // ========================================
 console.log("\n" + "=".repeat(60));
-console.log("\n🧮 FUNZIONI AVANZATE\n");
+console.log("\n🧮 ADVANCED FUNCTIONS\n");
 
-console.log("🦀 Rust - Fattoriale:");
+console.log("🦀 Rust - Factorial:");
 const fact = rustLib.symbols.factorial(8);
 console.log(`   8! = ${fact}`);
 
-console.log("\n🟣 C# - Test numeri primi:");
+console.log("\n🟣 C# - Prime number tests:");
 const testNumbers = [17, 20, 23, 24];
 testNumbers.forEach(num => {
   const isPrime = csharpLib.symbols.is_prime(num);
-  console.log(`   ${num} è primo? ${isPrime === 1 ? "✓ Sì" : "✗ No"}`);
+  console.log(`   ${num} is prime? ${isPrime === 1 ? "✓ Yes" : "✗ No"}`);
 });
 
 // ========================================
-// 5. Test Gestione Stringhe
+// 5. Test String Handling
 // ========================================
 console.log("\n" + "=".repeat(60));
-console.log("\n💬 GESTIONE STRINGHE\n");
+console.log("\n💬 STRING HANDLING\n");
 
-console.log("🦀 Rust - Saluto personalizzato:");
+console.log("🦀 Rust - Personalized greeting:");
 const nameBuffer = Buffer.from("Developer\0", "utf-8");
 const greetPtr = rustLib.symbols.greet(nameBuffer);
 if (greetPtr) {
@@ -134,7 +134,7 @@ if (greetPtr) {
   rustLib.symbols.free_string(greetPtr);
 }
 
-console.log("\n🟣 C# - Messaggio:");
+console.log("\n🟣 C# - Message:");
 const messagePtr = csharpLib.symbols.get_message();
 if (messagePtr) {
   const msgCStr = new CString(messagePtr);
@@ -143,34 +143,34 @@ if (messagePtr) {
 }
 
 // ========================================
-// 6. Operazioni Combinate
+// 6. Combined Operations
 // ========================================
 console.log("\n" + "=".repeat(60));
-console.log("\n🔄 OPERAZIONI COMBINATE (Rust + C#)\n");
+console.log("\n🔄 COMBINED OPERATIONS (Rust + C#)\n");
 
-console.log("📊 Calcolo espressione: (10 + 5) × 2 - 8 ÷ 2^3");
+console.log("📊 Expression calculation: (10 + 5) × 2 - 8 ÷ 2^3");
 const step1 = rustLib.symbols.add(10, 5);           // Rust: 10 + 5 = 15
-console.log(`   Passo 1 (Rust): 10 + 5 = ${step1}`);
+console.log(`   Step 1 (Rust): 10 + 5 = ${step1}`);
 
 const step2 = rustLib.symbols.multiply(step1, 2);    // Rust: 15 × 2 = 30
-console.log(`   Passo 2 (Rust): ${step1} × 2 = ${step2}`);
+console.log(`   Step 2 (Rust): ${step1} × 2 = ${step2}`);
 
 const step3 = csharpLib.symbols.power(2.0, 3.0);     // C#: 2^3 = 8
-console.log(`   Passo 3 (C#): 2^3 = ${step3}`);
+console.log(`   Step 3 (C#): 2^3 = ${step3}`);
 
 const step4 = csharpLib.symbols.divide(8.0, step3);  // C#: 8 ÷ 8 = 1
-console.log(`   Passo 4 (C#): 8 ÷ ${step3} = ${step4}`);
+console.log(`   Step 4 (C#): 8 ÷ ${step3} = ${step4}`);
 
 const result = csharpLib.symbols.subtract(step2, Math.floor(step4));  // C#: 30 - 1 = 29
-console.log(`   Risultato finale (C#): ${step2} - ${Math.floor(step4)} = ${result}`);
+console.log(`   Final result (C#): ${step2} - ${Math.floor(step4)} = ${result}`);
 
 // ========================================
-// 7. Conclusione
+// 7. Conclusion
 // ========================================
 console.log("\n" + "=".repeat(60));
-console.log("\n✨ RIEPILOGO\n");
-console.log("✅ Funzioni Rust chiamate con successo");
-console.log("✅ Funzioni C# chiamate con successo");
-console.log("✅ Operazioni combinate completate");
-console.log("✅ Gestione memoria corretta per entrambe le librerie");
-console.log("\n🎉 Demo completata! Bun può chiamare sia Rust che C# tramite FFI!\n");
+console.log("\n✨ SUMMARY\n");
+console.log("✅ Rust functions called successfully");
+console.log("✅ C# functions called successfully");
+console.log("✅ Combined operations completed");
+console.log("✅ Memory management correct for both libraries");
+console.log("\n🎉 Demo completed! Bun can call both Rust and C# via FFI!\n");

@@ -1,0 +1,2 @@
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.dylib
+/Users/plunix/dev/demo-ffi-bun-rust/bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.pdb

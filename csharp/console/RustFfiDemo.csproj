@@ -7,9 +7,9 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <!-- Copia la libreria Rust nella directory di output -->
+  <!-- Copy Rust library to output directory -->
   <ItemGroup>
-    <None Include="target/release/librust_ffi_lib.dylib">
+    <None Include="../../rust/target/release/librust_ffi_lib.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

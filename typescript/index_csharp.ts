@@ -1,15 +1,15 @@
 import { dlopen, FFIType, suffix, ptr, CString } from "bun:ffi";
 import path from "path";
 
-// Percorso della libreria C# compilata
+// Path to the compiled C# library
 const libPath = path.join(
   import.meta.dir,
-  `bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.dylib`
+  `../csharp/library/bin/Release/net8.0/osx-arm64/publish/CSharpFfiLib.dylib`
 );
 
-console.log("📚 Caricamento libreria da:", libPath);
+console.log("📚 Loading library from:", libPath);
 
-// Apri la libreria dinamica e definisci le funzioni C#
+// Open the dynamic library and define C# functions
 const lib = dlopen(libPath, {
   subtract: {
     args: [FFIType.i32, FFIType.i32],
@@ -39,40 +39,40 @@ const lib = dlopen(libPath, {
 
 console.log("🚀 Demo Bun FFI + C#\n");
 
-// Test funzione subtract
-console.log("📊 Test sottrazione:");
+// Test subtract function
+console.log("📊 Subtraction test:");
 const diff = lib.symbols.subtract(50, 23);
 console.log(`   50 - 23 = ${diff}\n`);
 
-// Test funzione divide
-console.log("📊 Test divisione:");
+// Test divide function
+console.log("📊 Division test:");
 const quotient = lib.symbols.divide(100.0, 8.0);
 console.log(`   100 ÷ 8 = ${quotient}\n`);
 
-// Test funzione power
-console.log("📊 Test potenza:");
+// Test power function
+console.log("📊 Power test:");
 const pow = lib.symbols.power(2.0, 10.0);
 console.log(`   2^10 = ${pow}\n`);
 
-// Test funzione is_prime
-console.log("📊 Test numero primo:");
+// Test is_prime function
+console.log("📊 Prime number test:");
 const num = 17;
 const isPrime = lib.symbols.is_prime(num);
-console.log(`   ${num} è primo? ${isPrime === 1 ? "Sì ✓" : "No ✗"}\n`);
+console.log(`   ${num} is prime? ${isPrime === 1 ? "Yes ✓" : "No ✗"}\n`);
 
 const num2 = 20;
 const isPrime2 = lib.symbols.is_prime(num2);
-console.log(`   ${num2} è primo? ${isPrime2 === 1 ? "Sì ✓" : "No ✗"}\n`);
+console.log(`   ${num2} is prime? ${isPrime2 === 1 ? "Yes ✓" : "No ✗"}\n`);
 
-// Test funzione get_message
-console.log("📊 Test messaggio da C#:");
+// Test get_message function
+console.log("📊 Message from C# test:");
 const messagePtr = lib.symbols.get_message();
 if (messagePtr) {
-  // Leggi la stringa dal puntatore C
+  // Read the string from C pointer
   const cstr = new CString(messagePtr);
   const message = cstr.toString();
   console.log(`   ${message}\n`);
   lib.symbols.free_memory(messagePtr);
 }
 
-console.log("✅ Tutti i test completati!");
+console.log("✅ All tests completed!");

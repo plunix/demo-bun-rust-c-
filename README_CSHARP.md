@@ -1,29 +1,29 @@
-# Demo FFI C# + Rust
+# FFI Demo C# + Rust
 
-Questa applicazione dimostra come usare C# per chiamare funzioni Rust tramite P/Invoke (Platform Invocation Services).
+This application demonstrates how to use C# to call Rust functions via P/Invoke (Platform Invocation Services).
 
-## 🚀 Prerequisiti
+## 🚀 Prerequisites
 
-- [.NET SDK 8.0](https://dotnet.microsoft.com/download) o superiore installato
-- [Rust](https://www.rust-lang.org/) installato (con `cargo`)
+- [.NET SDK 8.0](https://dotnet.microsoft.com/download) or higher installed
+- [Rust](https://www.rust-lang.org/) installed (with `cargo`)
 
-## 📦 Funzionalità
+## 📦 Features
 
-La libreria Rust espone le seguenti funzioni chiamate da C#:
-- `add(a, b)` - Somma due numeri interi
-- `multiply(a, b)` - Moltiplica due numeri interi
-- `factorial(n)` - Calcola il fattoriale di un numero
-- `greet(name)` - Restituisce un saluto personalizzato
+The Rust library exposes the following functions called from C#:
+- `add(a, b)` - Adds two integers
+- `multiply(a, b)` - Multiplies two integers
+- `factorial(n)` - Calculates the factorial of a number
+- `greet(name)` - Returns a personalized greeting
 
-## 🛠️ Installazione e Esecuzione
+## 🛠️ Installation and Execution
 
 ### Demo 1: C# → Rust (P/Invoke)
 
 ```bash
-# Usando script npm
+# Using npm scripts
 bun run demo:csharp-rust
 
-# Oppure manualmente
+# Or manually
 cargo build --release
 dotnet run
 ```
@@ -31,71 +31,71 @@ dotnet run
 ### Demo 2: Bun → C# (NativeAOT)
 
 ```bash
-# Usando script npm
+# Using npm scripts
 bun run demo:bun-csharp
 
-# Oppure manualmente
+# Or manually
 ./build_csharp.sh
 bun run index_csharp.ts
 ```
 
-### Esegui Tutti i Demo
+### Run All Demos
 
 ```bash
 bun run demo:all
 ```
 
-## 📁 File C#
+## 📁 C# Files
 
 ### C# → Rust (P/Invoke)
 ```
-├── Program.cs              # Applicazione C# che chiama Rust
-└── RustFfiDemo.csproj      # Progetto .NET console
+├── Program.cs              # C# application calling Rust
+└── RustFfiDemo.csproj      # .NET console project
 ```
 
 ### Bun → C# (NativeAOT)
 ```
-├── CSharpLib.cs            # Libreria C# con funzioni esportate
-├── CSharpFfiLib.csproj     # Progetto .NET libreria nativa
-├── build_csharp.sh         # Script di compilazione NativeAOT
-└── index_csharp.ts         # Bun che chiama C#
+├── CSharpLib.cs            # C# library with exported functions
+├── CSharpFfiLib.csproj     # .NET native library project
+├── build_csharp.sh         # NativeAOT build script
+└── index_csharp.ts         # Bun calling C#
 ```
 
-## 🔧 Come Funziona
+## 🔧 How It Works
 
-1. **Rust** compila una libreria dinamica (`cdylib`) con funzioni esposte tramite `extern "C"`
-2. **C#** usa P/Invoke (`[DllImport]`) per caricare la libreria e chiamare le funzioni
-3. La gestione della memoria è gestita correttamente:
-   - Le stringhe restituite da Rust vengono liberate chiamando `free_string`
-   - `Marshal.PtrToStringUTF8` converte i puntatori C in stringhe C#
+1. **Rust** compiles a dynamic library (`cdylib`) with functions exposed via `extern "C"`
+2. **C#** uses P/Invoke (`[DllImport]`) to load the library and call the functions
+3. Memory management is handled correctly:
+   - Strings returned from Rust are freed by calling `free_string`
+   - `Marshal.PtrToStringUTF8` converts C pointers to C# strings
 
-## 🔍 Note Tecniche
+## 🔍 Technical Notes
 
-### Percorso della Libreria
+### Library Path
 
-Il percorso della libreria varia in base al sistema operativo:
+The library path varies by operating system:
 - **macOS**: `librust_ffi_lib.dylib`
 - **Linux**: `librust_ffi_lib.so`
 - **Windows**: `rust_ffi_lib.dll`
 
-### Convenzione di Chiamata
+### Calling Convention
 
-Le funzioni Rust usano la convenzione `Cdecl` che deve essere specificata in `[DllImport]`.
+Rust functions use the `Cdecl` convention which must be specified in `[DllImport]`.
 
-### Gestione Stringhe
+### String Handling
 
-- C# → Rust: Convertiamo stringhe in byte array UTF-8 null-terminated
-- Rust → C#: Usiamo `Marshal.PtrToStringUTF8` per leggere puntatori C come stringhe
-- La memoria allocata da Rust deve essere liberata chiamando `free_string`
+- C# → Rust: Convert strings to null-terminated UTF-8 byte arrays
+- Rust → C#: Use `Marshal.PtrToStringUTF8` to read C pointers as strings
+- Memory allocated by Rust must be freed by calling `free_string`
 
-## 🆚 Confronto con Bun
+## 🆚 Comparison with Bun
 
-| Aspetto | Bun (TypeScript) | C# |
+| Aspect | Bun (TypeScript) | C# |
 |---------|------------------|-----|
-| Caricamento libreria | `dlopen` | `[DllImport]` |
-| Definizione funzioni | Oggetto con `FFIType` | Attributi su metodi |
-| Gestione stringhe | `CString`, `ptr` | `Marshal`, byte array |
-| Performance | Ottima | Ottima |
+| Library loading | `dlopen` | `[DllImport]` |
+| Function definition | Object with `FFIType` | Attributes on methods |
+| String handling | `CString`, `ptr` | `Marshal`, byte array |
+| Performance | Excellent | Excellent |
 | Type safety | Runtime | Compile-time |
 
-Entrambi gli approcci sono validi e performanti per l'interoperabilità FFI con Rust!
+Both approaches are valid and performant for FFI interoperability with Rust!

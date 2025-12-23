@@ -1,20 +1,20 @@
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
 
-/// Somma due numeri
+/// Adds two numbers
 #[no_mangle]
 pub extern "C" fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-/// Moltiplica due numeri
+/// Multiplies two numbers
 #[no_mangle]
 pub extern "C" fn multiply(a: i32, b: i32) -> i32 {
     a * b
 }
 
-/// Restituisce un saluto personalizzato
-/// NOTA: La stringa restituita deve essere liberata chiamando free_string
+/// Returns a personalized greeting
+/// NOTE: The returned string must be freed by calling free_string
 #[no_mangle]
 pub extern "C" fn greet(name: *const c_char) -> *mut c_char {
     if name.is_null() {
@@ -27,12 +27,12 @@ pub extern "C" fn greet(name: *const c_char) -> *mut c_char {
         Err(_) => return std::ptr::null_mut(),
     };
 
-    let greeting = format!("Ciao, {}! Benvenuto nell'applicazione Bun+Rust FFI!", name_str);
+    let greeting = format!("Hello, {}! Welcome to the Bun+Rust FFI application!", name_str);
     
     CString::new(greeting).unwrap().into_raw()
 }
 
-/// Libera la memoria di una stringa allocata da Rust
+/// Frees the memory of a string allocated by Rust
 #[no_mangle]
 pub extern "C" fn free_string(s: *mut c_char) {
     if !s.is_null() {
@@ -42,7 +42,7 @@ pub extern "C" fn free_string(s: *mut c_char) {
     }
 }
 
-/// Calcola il fattoriale di un numero
+/// Calculates the factorial of a number
 #[no_mangle]
 pub extern "C" fn factorial(n: u32) -> u64 {
     match n {
