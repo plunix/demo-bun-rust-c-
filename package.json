@@ -1,0 +1,24 @@
+{
+  "name": "demo-ffi-bun-rust",
+  "version": "1.0.0",
+  "description": "Demo applicazione Bun con FFI Rust",
+  "type": "module",
+  "scripts": {
+    "build:rust": "cargo build --release",
+    "build:csharp": "./build_csharp.sh",
+    "build:all": "bun run build:rust && bun run build:csharp",
+    "dev": "bun run index.ts",
+    "dev:csharp": "bun run index_csharp.ts",
+    "dev:combined": "bun run index_combined.ts",
+    "run:dotnet": "dotnet run",
+    "demo:bun-rust": "bun run build:rust && bun run dev",
+    "demo:bun-csharp": "bun run build:csharp && bun run dev:csharp",
+    "demo:csharp-rust": "bun run build:rust && dotnet run",
+    "demo:combined": "bun run build:all && bun run dev:combined",
+    "demo:all": "bun run demo:bun-rust && echo '\n---\n' && bun run demo:bun-csharp && echo '\n---\n' && bun run demo:csharp-rust && echo '\n---\n' && bun run demo:combined",
+    "start": "bun run build:rust && bun run dev"
+  },
+  "keywords": ["bun", "rust", "ffi"],
+  "author": "",
+  "license": "MIT"
+}

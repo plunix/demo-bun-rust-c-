@@ -1,0 +1,54 @@
+# Rust
+/target
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# .NET / C#
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+.vs/
+.vscode/settings.json
+
+# Bun / Node
+node_modules
+*.log
+.env
+.env.local
+bun.lockb
+
+# Librerie native compilate
+*.dylib
+*.so
+*.dll
+*.a
+*.lib
+
+# Debug symbols
+*.dSYM/
+*.dsym/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+*.code-workspace
+
+# Build temporanei
+*.tmp
+*.temp
+.cache/
